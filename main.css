@@ -1,0 +1,53 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+div {
+	position: relative;
+}
+input, textarea, select {
+	-webkit-appearance: none;
+}
+input[type="text"], textarea, select {
+	display: block;
+	width: 25em;
+}
+input[type="text"], textarea {
+	border: none;
+	background: none;
+}
+p {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+a:visited, a:hover {
+	color: red;
+}
+* {
+	box-sizing: border-box;
+}
+.code {
+	font-family: "Source Code Pro", monospace;
+	font-size: 0.75em;
+	color: #ccc;
+}
+
+html, body, div, p, input, textarea, select {
+	font-size: 15px;
+	font-family: "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
+	font-weight: 300;
+	line-height: 1.2em;
+}
+
+textarea.full {
+	width: 100%;
+	min-height: 5em;
+}
+textarea.large {
+	min-height: 20em;
+}

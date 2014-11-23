@@ -1,0 +1,26 @@
+.paragraph {
+	width: 100%;
+	padding-bottom: 1em;
+}
+.paragraph .translation {
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	margin-right: 1em;
+}
+.paragraph .translation:last-of-type {
+	margin: 0;
+}
+.paragraph .translation.locked {
+	background: #ccc;
+}
+
+.paragraph:first-of-type,
+.paragraph:first-of-type + .paragraph {
+	background: lime;
+}
+
+.paragraph:first-of-type textarea {
+	font-size: 1.5em;
+	font-weight: 700;
+}
