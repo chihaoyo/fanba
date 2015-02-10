@@ -72,7 +72,6 @@ var makeParagraphDOM = function(pID, langs) {
 	
 	for(var i = 0; i < langs.length; i++)
 		$p.append(makeTranslationDOM(pID, langs[i]));
-	$p.find('textarea').textareaAutoSize(); // https://github.com/javierjulio/textarea-autosize
 	
 	return $p;
 };
@@ -123,6 +122,7 @@ window.addEventListener('load', function() {
 				var pID = s.key();
 				var pContent = s.val();
 				var $p = makeParagraphDOM(pID, _langs).appendTo($text);
+				$p.find('textarea').textareaAutoSize(); // https://github.com/javierjulio/textarea-autosize
 				
 				var _translations = s.ref().child('translations')
 				_translations.on('child_added', function(s) {
