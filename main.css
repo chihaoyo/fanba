@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -9,21 +11,30 @@ div {
 }
 input, textarea, select {
 	-webkit-appearance: none;
-}
-input[type="text"], textarea, select {
+	-moz-appearance: none;
 	display: block;
 	width: 25em;
-}
-input[type="text"], textarea {
 	border: none;
+	border-radius: 0;
 	background: none;
+}
+input[type="button"] {
+	background: #eee;
+}
+h1, p {
+	color: black;
 }
 p {
 	margin: 0;
 	padding: 0;
 }
+h1 {
+	font-size: 2em;
+	margin: 0.5em 0;
+}
 a {
 	text-decoration: none;
+	color: blue;
 }
 a:visited, a:hover {
 	color: red;
@@ -39,7 +50,7 @@ a:visited, a:hover {
 
 html, body, div, p, input, textarea, select {
 	font-size: 15px;
-	font-family: "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
+	font-family: "Source Sans Pro", "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
 	font-weight: 300;
 	line-height: 1.2em;
 }
@@ -50,4 +61,16 @@ textarea.full {
 }
 textarea.large {
 	min-height: 20em;
+}
+
+nav {
+	padding: 1em;
+	background: #eee;
+	border-bottom: 1px dotted #ccc;
+}
+nav h1 {
+	text-align: center;
+}
+nav h1 a {
+	color: black !important;
 }

@@ -1,6 +1,6 @@
 .paragraph {
 	width: 100%;
-	padding-bottom: 1em;
+	padding: 1em;
 }
 .paragraph .translation {
 	display: inline-block;
@@ -12,15 +12,20 @@
 	margin: 0;
 }
 .paragraph .translation.locked {
-	background: #ccc;
+	background: #eee;
 }
 
-.paragraph:first-of-type,
+.paragraph:first-of-type {
+}
 .paragraph:first-of-type + .paragraph {
-	background: lime;
+	border-bottom: 3px dotted black;
 }
 
 .paragraph:first-of-type textarea {
 	font-size: 1.5em;
 	font-weight: 700;
+}
+
+.translation.saved {
+	outline: 3px solid #00cc18;
 }
