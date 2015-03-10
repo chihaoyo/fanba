@@ -28,8 +28,6 @@ var makeTranslationDOM = function(pID, lang) {
 			e.preventDefault();
 		}
 	}).focus(function(e) {
-		//console.log('focus');
-
 		var $that = $(this);
 		var $t = $that.closest('.translation');
 		var $p = $that.closest('.paragraph');
@@ -38,17 +36,13 @@ var makeTranslationDOM = function(pID, lang) {
 		var lang = $t.attr('lang');
 
 		if(tID) {
-			//console.log('update');
 			_translations.child(tID).update({locked: true});
 		}
 		else {
-			//console.log('push');
 			_translations.push(new FBP(lang, false, null)).update({locked: true});
 		}
 			
 	}).blur(function(e) {
-		//console.log('blur');
-
 		var $that = $(this);
 		var $t = $that.closest('.translation');
 		var $p = $that.closest('.paragraph');
@@ -57,11 +51,9 @@ var makeTranslationDOM = function(pID, lang) {
 		var lang = $t.attr('lang');
 
 		if(tID) {
-			//console.log('update');
 			_translations.child(tID).update({locked: false});
 		}
 		else {
-			//console.log('push');
 			_translations.push(new FBP(lang, false, null)).update({locked: false});
 		}
 	});

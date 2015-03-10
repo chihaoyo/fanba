@@ -19,8 +19,43 @@
 <script src="./main.js"></script>
 <script>
 
-var compare = function(a, b) {
-	return _list.indexOf(a) - _list.indexOf(b);
+var monitorParagraph = function(project, paragraph, lang, callback) {
+	var _ref = _fanba.child('projects/' + project + '/paragraphs/' + paragraph + '/translations');
+	
+	_ref.on('child_added', function(s) {
+		var k = s.key();
+		var v = s.val();
+		var $el = $('.project#' + project).find('.paragraph#' + paragraph);
+		
+		if(v.lang == lang) {
+			//$el.text(v.text).attr('key', k).attr('lang', v.lang).attr('timestamp', v.timestamp);
+			callback();
+		}
+	});
+	_ref.on('child_changed', function(s) {
+		var k = s.key();
+		var v = s.val();
+		var $el = $('.project#' + project).find('.paragraph#' + paragraph);
+		
+		if(v.lang == lang && v.timestamp > $el.attr('timestamp')) {
+			//$el.text(v.text).attr('key', k).attr('lang', v.lang).attr('timestamp', v.timestamp);
+			callback();
+		}
+	});
+	_ref.on('child_removed', function(s) {
+		var k = s.key();
+		var v = s.val();
+		var $el = $('.project#' + project).find('.paragraph#' + paragraph);
+		
+		if(k == $el.attr('key')) {
+			_ref.orderByChild('lang').equalTo(lang).limitToLast(1).once('value', function(s) { // OK?
+				var k = s.key();
+				var v = s.val();
+				//$el.text(v.text).attr('key', k).attr('lang', v.lang).attr('timestamp', v.timestamp);
+				callback();
+			})
+		}
+	});
 }
 
 var monitor = function(project, paragraph) {
@@ -29,7 +64,7 @@ var monitor = function(project, paragraph) {
 		var k = s.key();
 		var v = s.val();
 		var $el = $('.project#' + project).find('.paragraph#' + paragraph);
-		if(compare(v.lang, $el.attr('lang')) >= 0)
+		if(_isHigherThan(v.lang, $el.attr('lang')) >= 0)
 			$el.text(v.text).attr('lang', v.lang);
 	});
 };

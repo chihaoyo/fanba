@@ -20,7 +20,10 @@ var FBP = function(lang, original, text) {
 	this.timestamp = FBF.now();
 };
 
-var _list = ['jp', 'en', 'zh-tw'];
+var _langs = ['jp', 'en', 'zh-tw'];
+var _isHigherThan = function(a, b) {
+	return _langs.indexOf(a) - _langs.indexOf(b);
+}
 var _titles = ['逆転！台湾！', 'Fight! Taiwan!', '翻吧！台灣！'];
 var _t = _titles.length - 1;
 (function(){
