@@ -1,0 +1,125 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
+/* line 3, ../sass/_global.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 9, ../sass/_global.scss */
+div {
+  position: relative;
+}
+
+/* line 12, ../sass/_global.scss */
+input, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 25em;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+
+/* line 21, ../sass/_global.scss */
+input[type="button"] {
+  background: #eee;
+}
+
+/* line 24, ../sass/_global.scss */
+h1, p {
+  color: black;
+}
+
+/* line 27, ../sass/_global.scss */
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 31, ../sass/_global.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.5em 0;
+}
+
+/* line 35, ../sass/_global.scss */
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+/* line 39, ../sass/_global.scss */
+a:visited, a:hover {
+  color: red;
+}
+
+/* line 42, ../sass/_global.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 45, ../sass/_global.scss */
+.code {
+  font-family: "Source Code Pro", monospace;
+  font-size: 0.75em;
+  color: #ccc;
+}
+
+/* line 51, ../sass/_global.scss */
+html, body, div, p, input, textarea, select {
+  font-size: 15px;
+  font-family: "Source Sans Pro", "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
+  font-weight: 300;
+  line-height: 1.2em;
+}
+
+/* line 58, ../sass/_global.scss */
+textarea.full {
+  width: 100%;
+  min-height: 5em;
+}
+
+/* line 62, ../sass/_global.scss */
+textarea.large {
+  min-height: 20em;
+}
+
+/* line 66, ../sass/_global.scss */
+nav {
+  padding: 1em;
+  background: #eee;
+  border-bottom: 1px dotted #ccc;
+}
+
+/* line 71, ../sass/_global.scss */
+nav h1 {
+  text-align: center;
+}
+
+/* line 74, ../sass/_global.scss */
+nav h1 a {
+  color: black !important;
+}
+
+/* line 3, ../sass/project.scss */
+.project {
+  padding: 1em;
+}
+
+/* line 6, ../sass/project.scss */
+.field {
+  margin: 1em 0;
+}
+
+/* line 9, ../sass/project.scss */
+.field:first-of-type {
+  margin-top: 0;
+}
+
+/* line 12, ../sass/project.scss */
+input, textarea, select {
+  border: 1px solid #eee;
+}

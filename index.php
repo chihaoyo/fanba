@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>fanba</title>
-	<link rel="stylesheet" href="main.css" />
-	<link rel="stylesheet" href="index.css" />
+	<link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
 	<nav>
@@ -13,10 +12,10 @@
 	<div class="section action">我想翻</div>
 	<div class="section" id="projects"></div>
 </body>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdn.firebase.com/js/client/2.1.2/firebase.js"></script>
-<script src="./jquery.textarea_autosize.js"></script>
-<script src="./main.js"></script>
+<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//cdn.firebase.com/js/client/2.1.2/firebase.js"></script>
+<script src="./js/jquery.textarea_autosize.js"></script>
+<script src="./js/main.js"></script>
 <script>
 
 var monitorParagraph = function(project, paragraph, lang, callback) {
