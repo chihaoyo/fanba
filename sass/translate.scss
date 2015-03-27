@@ -1,3 +1,11 @@
+@import 'global';
+
+textarea:focus {
+	outline: none;
+	background: blue;
+	color: lime;
+}
+
 .paragraph {
 	width: 100%;
 	padding: 1em;
@@ -13,6 +21,9 @@
 }
 .paragraph .translation.locked {
 	background: #eee;
+}
+.paragraph .translation.locked textarea:not(:focus) {
+	color: #ddd;
 }
 
 .paragraph:first-of-type {

@@ -1,3 +1,5 @@
+@import 'global';
+
 .section {
 	margin: 1em;
 }
@@ -22,7 +24,7 @@
 	margin-right: 1%;
 	cursor: pointer;
 	background-color: #ddd;
-	background-image: url('icon-0-01.svg');
+	background-image: url('../vectors/icon-0-01.svg');
 	background-size: cover;
 }
 .project .info {

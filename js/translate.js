@@ -28,7 +28,7 @@ var makeTranslationDOM = function(pID, lang) {
 			e.preventDefault();
 		}
 	}).focus(function(e) {
-		var $that = $(this);
+		var $that = $(this).addClass('has-focus');
 		var $t = $that.closest('.translation');
 		var $p = $that.closest('.paragraph');
 		var tID = $t.attr('id');
@@ -43,7 +43,7 @@ var makeTranslationDOM = function(pID, lang) {
 		}
 			
 	}).blur(function(e) {
-		var $that = $(this);
+		var $that = $(this).removeClass('has-focus');
 		var $t = $that.closest('.translation');
 		var $p = $that.closest('.paragraph');
 		var tID = $t.attr('id');
@@ -76,8 +76,10 @@ var updateTranslationDOM = function($dom, k, v) {
 		.toggleClass('original', v.original)
 		.toggleClass('locked', v.locked);
 	
+	$dom.find('textarea')
+		.prop('disabled', function() { return v.locked && !$(this).hasClass('has-focus'); })
+		.val(v.text).trigger('input');
 	$dom.find('.id').text(k);
-	$dom.find('textarea').val(v.text).trigger('input');
 };
 
 window.addEventListener('load', function() {
