@@ -2,52 +2,59 @@ var _reset = false;
 var _fanba = new Firebase("https://fanba.firebaseio.com");
 var _project = null;
 var _langs = null;
+/*
+_fanba.child('.info/connected').on('value', function(connectedSnap) {
+	if (connectedSnap.val() === true) {
+		alert('on!');
+	}
+	else {
+		alert('off!');
+	}
+});*/
 
-var makeTranslationDOM = function(pID, lang) {
+var makeLanguageHeaderUI = function(langs) {
+	var $dom = $('<div id="header">');
+	for(var i = 0; i < langs.length; i++)
+		$dom.append('<div class="language">' + _lang_names[langs[i]] + '</div>');
+	return $dom;
+};
+
+var makeTranslationUI = function(pID, lang) {
 	var _translations = _project.child('paragraphs/' + pID + '/translations');
-	var $dom = $('<div class="translation" lang="' + lang + '" timestamp="0"><p class="code id">⎵</p><textarea class="full" placeholder="' + lang + '"></textarea></div>');
+	var $dom = $('<div class="translation" lang="' + lang + '" timestamp="0"><p class="code id">⎵</p><textarea class="full" placeholder="' + _lang_names[lang] + '"></textarea></div>');
 	$textarea = $dom.find('textarea').keypress(function(e) {
-		var $that = $(this);
-		var $t = $that.closest('.translation');
-		var $p = $that.closest('.paragraph');
-		var tID = $t.attr('id');
-		var pID = $p.attr('id');
-
-		var lang = $t.attr('lang');
 		if(e.keyCode == 13) {
-			var original = (tID ? false : $t.hasClass('original'));
+			var $that = $(this);
+			var $t = $that.closest('.translation').addClass('saved');
+			var tID = $t.attr('id');
+			var lang = $t.attr('lang');
 			var text = $that.val().trim();
-			_translations.push(new FBP(lang, original, text)).update({locked: true}); // always push (revision)
 			
-			var $translation = $that.closest('.translation').addClass('saved');
-			setTimeout(function() {
-				$translation.removeClass('saved');
-			}, 1000);
-			$that.blur();
-			
+			_translations.push(new FBP(lang, false, text)) // always push (revision)
+				.update({locked: true}, function(response) {
+					$t.addClass('saved');
+					setTimeout(function() {
+						$t.removeClass('saved');
+					}, 1000);
+					$that.blur();
+				});
+
 			e.preventDefault();
 		}
 	}).focus(function(e) {
-		var $that = $(this).addClass('has-focus');
-		var $t = $that.closest('.translation');
-		var $p = $that.closest('.paragraph');
+		var $t = $(this).addClass('has-focus').closest('.translation');
 		var tID = $t.attr('id');
-		var pID = $p.attr('id');
 		var lang = $t.attr('lang');
 
 		if(tID) {
 			_translations.child(tID).update({locked: true});
 		}
 		else {
-			_translations.push(new FBP(lang, false, null)).update({locked: true});
+			_translations.push(new FBP(lang, true, null)).update({locked: true});
 		}
-			
 	}).blur(function(e) {
-		var $that = $(this).removeClass('has-focus');
-		var $t = $that.closest('.translation');
-		var $p = $that.closest('.paragraph');
+		var $t = $(this).addClass('has-focus').closest('.translation');
 		var tID = $t.attr('id');
-		var pID = $p.attr('id');
 		var lang = $t.attr('lang');
 
 		if(tID) {
@@ -59,15 +66,36 @@ var makeTranslationDOM = function(pID, lang) {
 	});
 	return $dom;
 };
-var makeParagraphDOM = function(pID, langs) {
-	$p = $('<div class="paragraph" id="' + pID + '"><p class="code">' + pID + '</p></div>');
-	
+var makeParagraphUI = function(pID, langs) {
+	$p = $('<div class="paragraph" id="' + pID + '"><p class="code">' + pID + '</p><div class="cross"><rect></rect><rect></rect></div></div>');
+	$p.find('.cross').click(function() {
+		var $p = $(this).closest('.paragraph');
+		var pID = $p.attr('id');
+		
+		$p.find('.translation').each(function() {
+			var tID = $(this).attr('id');
+			_project.child('paragraphs/' + pID + '/translations/' + tID).onDisconnect().cancel();
+		});
+		
+		_project.child('paragraphs/' + pID).remove();
+	})
 	for(var i = 0; i < langs.length; i++)
-		$p.append(makeTranslationDOM(pID, langs[i]));
+		$p.append(makeTranslationUI(pID, langs[i]));
 	
 	return $p;
 };
-var updateTranslationDOM = function($dom, k, v) {
+var updateTranslationUI = function($dom, k, v, pID) {
+	var k0 = $dom.attr('id');
+	if(k0 !== k) {
+		if(k0 !== undefined) {
+			// cancel connectivity monitor on translation k0
+			_project.child('paragraphs/' + pID + '/translations/' + k0).onDisconnect().cancel();
+		}
+		if(k !== undefined) {
+			// activate connectivity monitor on translation k
+			_project.child('paragraphs/' + pID + '/translations/' + k).onDisconnect().update({locked: false});
+		}
+	}
 	$dom.attr({
 			id: k,
 			lang: v.lang,
@@ -110,12 +138,14 @@ window.addEventListener('load', function() {
 			
 			// update title (temporary)
 			document.title = projectID + '・' + document.title;
+			// make language header
+			$text.before(makeLanguageHeaderUI(_langs));
 			
 			var _paragraphs = _project.child('paragraphs');
 			_paragraphs.on('child_added', function(s) {
 				var pID = s.key();
 				var pContent = s.val();
-				var $p = makeParagraphDOM(pID, _langs).appendTo($text);
+				var $p = makeParagraphUI(pID, _langs).appendTo($text);
 				$p.find('textarea').textareaAutoSize(); // https://github.com/javierjulio/textarea-autosize
 				
 				var _translations = s.ref().child('translations')
@@ -124,17 +154,25 @@ window.addEventListener('load', function() {
 					var tContent = s.val();
 					
 					var $t = $('.paragraph#' + pID).find('.translation[lang="' + tContent.lang + '"]');
-					updateTranslationDOM($t, tID, tContent);
+					updateTranslationUI($t, tID, tContent, pID);
 				});
 				_translations.on('child_changed', function(s) {
 					var tID = s.key();
 					var tContent = s.val();
 					
 					$t = $('.translation#' + tID);
-					updateTranslationDOM($t, tID, tContent);
+					updateTranslationUI($t, tID, tContent, pID);
 				})
 			});
 			_paragraphs.on('child_changed', function(s) {});
+			_paragraphs.on('child_removed', function(s) {
+				var pID = s.key();
+				$('.paragraph#' + pID).remove();
+			});
 		});
 	} // end of a valid project
+	
+	$('button.create-paragraph').click(function() {
+		_project.child('paragraphs').push().set({init: true});
+	});
 }); // end of load event
