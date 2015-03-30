@@ -20,9 +20,9 @@ var FBP = function(lang, original, text) {
 	this.timestamp = FBF.now();
 };
 
-var _langs = ['jp', 'en', 'zh-tw'];
+var _lang_hierarchy = ['jp', 'en', 'zh-tw'];
 var _isHigherThan = function(a, b) {
-	return _langs.indexOf(a) - _langs.indexOf(b);
+	return _lang_hierarchy.indexOf(a) - _lang_hierarchy.indexOf(b);
 }
 var _titles = ['逆転！台湾！', 'Fight! Taiwan!', '翻吧！台灣！'];
 var _t = _titles.length - 1;
@@ -32,3 +32,9 @@ var _t = _titles.length - 1;
 		$('nav h1 a').text(_titles[_t]);
 	}, 2000);
 })();
+
+var _lang_names = {
+	'zh-tw': '中文',
+	'en': 'English',
+	'jp': '日本語'
+};

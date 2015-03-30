@@ -69,37 +69,59 @@ a:visited, a:hover {
 }
 
 /* line 51, ../sass/_global.scss */
-html, body, div, p, input, textarea, select {
+html, body, div, p, input, textarea, select, button {
   font-size: 15px;
   font-family: "Source Sans Pro", "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 300;
   line-height: 1.2em;
 }
 
-/* line 58, ../sass/_global.scss */
+/* line 57, ../sass/_global.scss */
+a.button, input[type='submit'], button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: black;
+  color: white;
+  padding: 1em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* line 67, ../sass/_global.scss */
+a.button {
+  display: inline-block;
+}
+
+/* line 71, ../sass/_global.scss */
+textarea {
+  line-height: 1.5em;
+}
+
+/* line 74, ../sass/_global.scss */
 textarea.full {
   width: 100%;
   min-height: 5em;
 }
 
-/* line 62, ../sass/_global.scss */
+/* line 78, ../sass/_global.scss */
 textarea.large {
   min-height: 20em;
 }
 
-/* line 66, ../sass/_global.scss */
+/* line 82, ../sass/_global.scss */
 nav {
   padding: 1em;
   background: #eee;
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 6px solid black;
 }
 
-/* line 71, ../sass/_global.scss */
+/* line 87, ../sass/_global.scss */
 nav h1 {
   text-align: center;
 }
 
-/* line 74, ../sass/_global.scss */
+/* line 90, ../sass/_global.scss */
 nav h1 a {
   color: black !important;
 }

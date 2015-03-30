@@ -69,37 +69,59 @@ a:visited, a:hover {
 }
 
 /* line 51, ../sass/_global.scss */
-html, body, div, p, input, textarea, select {
+html, body, div, p, input, textarea, select, button {
   font-size: 15px;
   font-family: "Source Sans Pro", "Noto Sans CJK TC", "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 300;
   line-height: 1.2em;
 }
 
-/* line 58, ../sass/_global.scss */
+/* line 57, ../sass/_global.scss */
+a.button, input[type='submit'], button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: black;
+  color: white;
+  padding: 1em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* line 67, ../sass/_global.scss */
+a.button {
+  display: inline-block;
+}
+
+/* line 71, ../sass/_global.scss */
+textarea {
+  line-height: 1.5em;
+}
+
+/* line 74, ../sass/_global.scss */
 textarea.full {
   width: 100%;
   min-height: 5em;
 }
 
-/* line 62, ../sass/_global.scss */
+/* line 78, ../sass/_global.scss */
 textarea.large {
   min-height: 20em;
 }
 
-/* line 66, ../sass/_global.scss */
+/* line 82, ../sass/_global.scss */
 nav {
   padding: 1em;
   background: #eee;
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 6px solid black;
 }
 
-/* line 71, ../sass/_global.scss */
+/* line 87, ../sass/_global.scss */
 nav h1 {
   text-align: center;
 }
 
-/* line 74, ../sass/_global.scss */
+/* line 90, ../sass/_global.scss */
 nav h1 a {
   color: black !important;
 }
@@ -112,46 +134,96 @@ textarea:focus {
 }
 
 /* line 9, ../sass/translate.scss */
-.paragraph {
-  width: 100%;
-  padding: 1em;
+.cross {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+/* line 17, ../sass/translate.scss */
+.cross > rect {
+  display: block;
+  position: absolute;
+  top: 50%;
+  background: black;
+}
+/* line 23, ../sass/translate.scss */
+.cross > rect:first-child {
+  -webkit-transform: translateY(-50%) rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
+  width: 3em;
+  height: 0.3em;
+}
+/* line 29, ../sass/translate.scss */
+.cross > rect:last-child {
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
+  width: 3em;
+  height: 0.3em;
 }
 
-/* line 13, ../sass/translate.scss */
+/* line 38, ../sass/translate.scss */
+#header {
+  width: 100%;
+  padding: 1em 1em 1em 4em;
+  border-bottom: 3px solid black;
+}
+/* line 43, ../sass/translate.scss */
+#header .language {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin-right: 1em;
+  text-align: center;
+}
+
+/* line 51, ../sass/translate.scss */
+.paragraph {
+  width: 100%;
+  padding: 1em 1em 1em 4em;
+}
+/* line 55, ../sass/translate.scss */
+.paragraph > .cross {
+  position: absolute;
+  left: 0.5em;
+  top: 1em;
+}
+/* line 61, ../sass/translate.scss */
 .paragraph .translation {
   display: inline-block;
   vertical-align: top;
   width: 30%;
   margin-right: 1em;
 }
-
-/* line 19, ../sass/translate.scss */
+/* line 67, ../sass/translate.scss */
 .paragraph .translation:last-of-type {
   margin: 0;
 }
-
-/* line 22, ../sass/translate.scss */
+/* line 70, ../sass/translate.scss */
+.paragraph .translation.saved {
+  outline: 3px solid #00cc18;
+}
+/* line 73, ../sass/translate.scss */
 .paragraph .translation.locked {
   background: #eee;
 }
-
-/* line 25, ../sass/translate.scss */
+/* line 76, ../sass/translate.scss */
 .paragraph .translation.locked textarea:not(:focus) {
   color: #ddd;
 }
 
-/* line 31, ../sass/translate.scss */
-.paragraph:first-of-type + .paragraph {
-  border-bottom: 3px dotted black;
-}
-
-/* line 35, ../sass/translate.scss */
+/* line 83, ../sass/translate.scss */
 .paragraph:first-of-type textarea {
   font-size: 1.5em;
   font-weight: 700;
 }
 
-/* line 40, ../sass/translate.scss */
-.translation.saved {
-  outline: 3px solid #00cc18;
+/* line 88, ../sass/translate.scss */
+.paragraph:first-of-type + .paragraph {
+  border-bottom: 3px dotted black;
+}
+
+/* line 92, ../sass/translate.scss */
+.tail {
+  text-align: center;
 }

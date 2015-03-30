@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
 	<title>fanba</title>
 	<link rel="stylesheet" href="css/project.css" />
 </head>

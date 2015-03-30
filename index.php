@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
 	<title>fanba</title>
 	<link rel="stylesheet" href="css/index.css" />
 </head>
@@ -8,7 +9,7 @@
 	<nav>
 		<h1><a href="http://chihaoyo.net/fanba/">翻吧！台灣！</a></h1>
 	</nav>
-	<div class="section action"><a href="project.php">我想被翻</a></div>
+	<div class="section action"><a class="button" href="project.php">我想被翻</a></div>
 	<div class="section action">我想翻</div>
 	<div class="section" id="projects"></div>
 </body>
