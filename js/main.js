@@ -38,3 +38,8 @@ var _lang_names = {
 	'en': 'English',
 	'jp': '日本語'
 };
+var _lang_codes = {
+	'中': 'zh-tw',
+	'英': 'en',
+	'日': 'jp',
+};

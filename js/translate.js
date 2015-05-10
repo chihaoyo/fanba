@@ -3,6 +3,7 @@ var _fanba = new Firebase("https://fanba.firebaseio.com");
 var _project = null;
 var _langs = null;
 /*
+// http://stackoverflow.com/questions/11351689/detect-if-firebase-connection-is-lost-regained
 _fanba.child('.info/connected').on('value', function(connectedSnap) {
 	if (connectedSnap.val() === true) {
 		alert('on!');
@@ -21,7 +22,7 @@ var makeLanguageHeaderUI = function(langs) {
 
 var makeTranslationUI = function(pID, lang) {
 	var _translations = _project.child('paragraphs/' + pID + '/translations');
-	var $dom = $('<div class="translation" lang="' + lang + '" timestamp="0"><p class="code id">⎵</p><textarea class="full" placeholder="' + _lang_names[lang] + '"></textarea></div>');
+	var $dom = $('<div class="translation" lang="' + lang + '" timestamp="0"><p class="code id" lang="en">⎵</p><textarea class="full" placeholder="' + _lang_names[lang] + '"></textarea></div>');
 	$textarea = $dom.find('textarea').keypress(function(e) {
 		if(e.keyCode == 13) {
 			var $that = $(this);
