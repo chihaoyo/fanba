@@ -2,8 +2,8 @@ var createProject = function(title, description, text, lang) {
 	var _project = null;
 	if(title && text) {
 		var langs = [lang, 'en', 'jp'].join(',');
-		if(lang != 'zh-tw') {
-			langs = [lang, 'zh-tw'].join(',');
+		if(lang != 'zh') {
+			langs = [lang, 'zh'].join(',');
 		}
 		var ps = text.split("\n");
 				

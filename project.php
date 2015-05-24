@@ -16,7 +16,7 @@
 			<div class="field"><textarea name="text" placeholder="貼上文字" class="large"></textarea></div>
 			<div class="field"><select name="lang">
 				<option value="martian">主要語言</option>
-				<option>zh-tw</option>
+				<option>zh</option>
 				<option>en</option>
 				<option>jp</option>
 			</select></div>
