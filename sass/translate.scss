@@ -35,23 +35,24 @@ $cross-size: 3em;
 }
 
 $padding: 1em;
-#header {
+.row {
 	width: 100%;
 	padding: $padding $padding $padding ($cross-size + $padding);
-	border-bottom: 3px solid black;
 	
-	.language {
+	> .col {
 		display: inline-block;
 		vertical-align: top;
 		width: 30%;
 		margin-right: 1em;
+	}
+	> .col.centered {
 		text-align: center;
 	}
 }
+#header {
+	border-bottom: 3px solid black;
+}
 .paragraph {
-	width: 100%;
-	padding: $padding $padding $padding ($cross-size + $padding);
-	
 	> .cross {
 		position: absolute;
 		left: $padding/2;
@@ -59,10 +60,6 @@ $padding: 1em;
 	}
 	
 	.translation {
-		display: inline-block;
-		vertical-align: top;
-		width: 30%;
-		margin-right: 1em;
 	}
 	.translation:last-of-type {
 		margin: 0;
@@ -90,5 +87,7 @@ $padding: 1em;
 }
 
 .tail {
+	display: none;
 	text-align: center;
+	padding: 1em 0;
 }

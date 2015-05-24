@@ -65,7 +65,7 @@ a:visited, a:hover {
 .code {
   font-family: "Source Code Pro", monospace;
   font-size: 0.75em;
-  color: #ccc;
+  color: #ddd;
 }
 
 /* line 51, ../sass/_global.scss */
@@ -163,67 +163,64 @@ textarea:focus {
 }
 
 /* line 38, ../sass/translate.scss */
-#header {
+.row {
   width: 100%;
   padding: 1em 1em 1em 4em;
-  border-bottom: 3px solid black;
 }
-/* line 43, ../sass/translate.scss */
-#header .language {
+/* line 42, ../sass/translate.scss */
+.row > .col {
   display: inline-block;
   vertical-align: top;
   width: 30%;
   margin-right: 1em;
+}
+/* line 48, ../sass/translate.scss */
+.row > .col.centered {
   text-align: center;
 }
 
-/* line 51, ../sass/translate.scss */
-.paragraph {
-  width: 100%;
-  padding: 1em 1em 1em 4em;
+/* line 52, ../sass/translate.scss */
+#header {
+  border-bottom: 3px solid black;
 }
-/* line 55, ../sass/translate.scss */
+
+/* line 56, ../sass/translate.scss */
 .paragraph > .cross {
   position: absolute;
   left: 0.5em;
   top: 1em;
 }
-/* line 61, ../sass/translate.scss */
-.paragraph .translation {
-  display: inline-block;
-  vertical-align: top;
-  width: 30%;
-  margin-right: 1em;
-}
-/* line 67, ../sass/translate.scss */
+/* line 64, ../sass/translate.scss */
 .paragraph .translation:last-of-type {
   margin: 0;
 }
-/* line 70, ../sass/translate.scss */
+/* line 67, ../sass/translate.scss */
 .paragraph .translation.saved {
   outline: 3px solid #00cc18;
 }
-/* line 73, ../sass/translate.scss */
+/* line 70, ../sass/translate.scss */
 .paragraph .translation.locked {
   background: #eee;
 }
-/* line 76, ../sass/translate.scss */
+/* line 73, ../sass/translate.scss */
 .paragraph .translation.locked textarea:not(:focus) {
   color: #ddd;
 }
 
-/* line 83, ../sass/translate.scss */
+/* line 80, ../sass/translate.scss */
 .paragraph:first-of-type textarea {
   font-size: 1.5em;
   font-weight: 700;
 }
 
-/* line 88, ../sass/translate.scss */
+/* line 85, ../sass/translate.scss */
 .paragraph:first-of-type + .paragraph {
   border-bottom: 3px dotted black;
 }
 
-/* line 92, ../sass/translate.scss */
+/* line 89, ../sass/translate.scss */
 .tail {
+  display: none;
   text-align: center;
+  padding: 1em 0;
 }
